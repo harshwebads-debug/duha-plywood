@@ -26,6 +26,10 @@
 body {
     font-family: var(--font-nav);
     background-color: #f9f9f9;
+}
+
+body,
+html {
     overflow-x: hidden;
 }
 
@@ -1442,9 +1446,15 @@ ul {
 }
 
 #duha-products-slider {
-    padding: 100px 50px;
+    padding: 50px 50px;
     background-color: var(--duha-bg-light);
     overflow: hidden;
+}
+
+@media(max-width:550px) {
+    #duha-products-slider {
+        padding: 30px 20px;
+    }
 }
 
 
