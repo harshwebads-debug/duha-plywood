@@ -1,0 +1,2617 @@
+/* =========================================
+           1. LUXURY BRAND VARIABLES
+           ========================================= */
+
+:root {
+    /* Brand Colors */
+    --duha-dark: #0f0f0f;
+    /* Pitch Black for Contrast */
+    --duha-maroon: #5C140C;
+    /* Brand Core (Deep Red) */
+    --duha-gold: #C5A065;
+    /* Metallic Gold Accent */
+    --duha-white: #ffffff;
+    /* Typography */
+    --font-nav: 'Outfit', sans-serif;
+    --font-heading: 'Playfair Display', serif;
+    /* Transitions */
+    --ease-lux: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+
+/* =========================================
+           2. GLOBAL RESET
+           ========================================= */
+
+body {
+    font-family: var(--font-nav);
+    background-color: #f9f9f9;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.duha-fab-container {
+    position: fixed;
+    bottom: 30px;
+    right: 15px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column-reverse;
+    /* Trigger at bottom */
+    align-items: center;
+    gap: 15px;
+}
+
+
+/* --- MAIN TRIGGER BUTTON --- */
+
+.fab-trigger {
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, var(--duha-gold) 0%, #e6c89c 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2a0805;
+    font-size: 1.8rem;
+    box-shadow: 0 10px 25px rgba(197, 160, 101, 0.4);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border: 2px solid #fff;
+}
+
+
+/* Pulse Ring Animation */
+
+.fab-trigger::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid var(--duha-gold);
+    animation: ripple 2s infinite;
+    z-index: -1;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.6);
+        opacity: 0;
+    }
+}
+
+
+/* Hover State for Trigger */
+
+.duha-fab-container:hover .fab-trigger {
+    transform: rotate(45deg);
+    /* Turn X */
+    background: var(--duha-maroon);
+    color: #fff;
+    border-color: var(--duha-gold);
+}
+
+
+/* Icon Switch Logic */
+
+.fab-icon-close {
+    display: none;
+}
+
+.duha-fab-container:hover .fab-icon-chat {
+    display: none;
+}
+
+.duha-fab-container:hover .fab-icon-close {
+    display: block;
+}
+
+
+/* --- CHILD BUTTONS (Hidden by default) --- */
+
+.fab-action {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(20px) scale(0.5);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+    pointer-events: none;
+    /* Disable clicking when hidden */
+}
+
+
+/* Colors */
+
+.fab-whatsapp {
+    background: #25D366;
+}
+
+.fab-call {
+    background: #007bff;
+}
+
+.fab-mail {
+    background: #ea4335;
+}
+
+
+/* Reveal on Hover */
+
+.duha-fab-container:hover .fab-action {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+
+/* Staggered Delay for cool opening effect */
+
+.duha-fab-container:hover .fab-whatsapp {
+    transition-delay: 0.05s;
+}
+
+.duha-fab-container:hover .fab-call {
+    transition-delay: 0.1s;
+}
+
+.duha-fab-container:hover .fab-mail {
+    transition-delay: 0.15s;
+}
+
+
+/* --- TOOLTIPS (Side Labels) --- */
+
+.fab-tooltip {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%) translateX(10px);
+    background: #333;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: 0.3s;
+    pointer-events: none;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.fab-action:hover {
+    transform: scale(1.1);
+}
+
+.fab-action:hover .fab-tooltip {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+
+/* Mobile Adjustments */
+
+@media (max-width: 768px) {
+    .duha-fab-container {
+        bottom: 20px;
+        right: 20px;
+    }
+    .fab-trigger {
+        width: 55px;
+        height: 55px;
+        font-size: 1.5rem;
+    }
+    .fab-action {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+
+/* =========================================
+           3. TOP BAR (Dark Matte Finish)
+           ========================================= */
+
+.duha-top-bar {
+    background-color: #1a0504;
+    /* Very Dark Maroon/Black */
+    color: rgba(255, 255, 255, 0.8);
+    padding: 10px 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.duha-top-info a {
+    color: rgba(255, 255, 255, 0.8);
+    margin-right: 25px;
+    transition: var(--ease-lux);
+    font-weight: 400;
+}
+
+.duha-top-info i {
+    color: var(--duha-gold);
+    margin-right: 8px;
+}
+
+.duha-top-info a:hover {
+    color: var(--duha-white);
+}
+
+.duha-social a {
+    color: var(--duha-white);
+    margin-left: 15px;
+    transition: var(--ease-lux);
+    font-size: 1rem;
+}
+
+.duha-social a:hover {
+    color: var(--duha-gold);
+    transform: translateY(-2px);
+    display: inline-block;
+}
+
+
+/* =========================================
+           4. MAIN NAVBAR (Solid & Sharp)
+           ========================================= */
+
+.duha-navbar {
+    background: var(--duha-white);
+    padding: 5px 0 !important;
+    /* Taller for premium feel */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    /* Very subtle shadow */
+    transition: var(--ease-lux);
+}
+
+
+/* Logo */
+
+.duha-logo-img {
+    height: 80px;
+    width: auto;
+    display: block;
+}
+
+
+/* --- NAVIGATION LINKS (Bold & Uppercase) --- */
+
+.navbar-nav .nav-item {
+    margin: 0 15px;
+}
+
+.duha-nav-link {
+    font-family: var(--font-nav);
+    color: var(--duha-dark) !important;
+    font-weight: 700;
+    /* Bold */
+    font-size: 0.85rem;
+    /* Smaller but BOLD */
+    text-transform: uppercase;
+    /* The "Premium" Look */
+    letter-spacing: 1.5px;
+    /* Spacing is key */
+    padding: 10px 0 !important;
+    position: relative;
+    transition: var(--ease-lux);
+}
+
+
+/* The Gold Line Effect */
+
+.duha-nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--duha-maroon);
+    /* Or Gold */
+    transition: var(--ease-lux);
+    transform: translateX(-50%);
+}
+
+.duha-nav-link:hover {
+    color: var(--duha-maroon) !important;
+}
+
+.duha-nav-link:hover::before,
+.duha-nav-link.active::before {
+    width: 100%;
+    /* Expands from center */
+}
+
+
+/* --- DROPDOWN (Base Styles) --- */
+
+.dropdown-menu {
+    border: none;
+    border-top: 3px solid var(--duha-maroon);
+    border-radius: 0;
+    /* Sharp corners */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    padding: 0;
+    margin-top: 15px;
+    min-width: 240px;
+}
+
+.dropdown-item {
+    padding: 14px 25px;
+    font-size: 0.9rem;
+    color: var(--duha-dark);
+    font-weight: 500;
+    border-bottom: 1px solid #f5f5f5;
+    transition: 0.2s;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background-color: #fdfdfd;
+    color: var(--duha-maroon);
+    padding-left: 30px;
+    /* Slight slide */
+    border-left: 3px solid var(--duha-gold);
+}
+
+
+/* --- DESKTOP SPECIFIC (Hover & Animation) --- */
+
+@media (min-width: 992px) {
+    .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+        animation: fadeInUp 0.3s ease forwards;
+    }
+    /* Dropdown Animation */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+
+/* --- MOBILE/TABLET SPECIFIC (Fixes) --- */
+
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background: #fff;
+        padding: 20px;
+        margin-top: 15px;
+        border-top: 1px solid #eee;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    .navbar-nav {
+        align-items: flex-start !important;
+        /* Force Left align */
+    }
+    .navbar-nav .nav-item {
+        margin: 5px 0;
+        width: 100%;
+    }
+    .duha-nav-link {
+        display: block;
+        padding: 12px 0 !important;
+        border-bottom: 1px solid #f9f9f9;
+        width: 100%;
+    }
+    .duha-nav-link::before {
+        display: none;
+    }
+    /* Remove gold line on mobile */
+    /* Fix Dropdown Alignment */
+    .dropdown-menu {
+        position: static !important;
+        /* Not absolute */
+        float: none;
+        width: 100%;
+        box-shadow: none;
+        border: none;
+        background-color: #f9f9f9;
+        /* Slight contrast */
+        margin-top: 0;
+        padding-left: 20px;
+        /* Indent */
+        transform: none !important;
+        /* Remove desktop animation */
+    }
+    .dropdown-item {
+        border-bottom: 1px solid #eee;
+        padding-left: 10px;
+    }
+    /* Make button visible on mobile */
+    .duha-btn-quote-container {
+        display: block !important;
+        margin-top: 20px;
+        width: 100%;
+    }
+    .duha-btn-quote {
+        width: 100%;
+        text-align: center;
+        display: block;
+    }
+}
+
+
+/* --- GET QUOTE BUTTON (Solid Block) --- */
+
+.duha-btn-quote {
+    background-color: var(--duha-maroon);
+    color: var(--duha-white);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    padding: 14px 30px;
+    border-radius: 0;
+    /* Sharp Industrial Look */
+    border: none;
+    transition: var(--ease-lux);
+    position: relative;
+    overflow: hidden;
+}
+
+.duha-btn-quote i {
+    transition: 0.3s;
+}
+
+.duha-btn-quote:hover {
+    background-color: var(--duha-gold);
+    color: var(--duha-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(92, 20, 12, 0.2);
+}
+
+.duha-btn-quote:hover i {
+    transform: translateX(5px);
+    /* Arrow moves right */
+}
+
+
+/* --- MOBILE TOGGLER --- */
+
+.navbar-toggler {
+    border: none;
+    padding: 0;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-toggler i {
+    font-size: 1.8rem;
+    color: var(--duha-dark);
+}
+
+
+/* =========================================
+           5. MODERN HERO SLIDER
+           ========================================= */
+
+#duha-hero-carousel {
+    position: relative;
+    /* Adaptive Height for Devices */
+    height: 80vh;
+    width: 100%;
+    background-color: #000;
+}
+
+.carousel-inner,
+.carousel-item {
+    height: 100%;
+}
+
+
+/* Slide Images */
+
+.carousel-item img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    transform: scale(1);
+    transition: transform 6s ease-in-out;
+    /* Important for Mobile to not cut main subject */
+    object-position: center center;
+}
+
+.carousel-item.active img {
+    transform: scale(1.08);
+}
+
+
+/* Overlay */
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%);
+    z-index: 1;
+}
+
+
+/* Captions */
+
+.carousel-caption {
+    z-index: 2;
+    bottom: 30%;
+    text-align: center;
+}
+
+
+/* Text Animations */
+
+.hero-title,
+.hero-subtitle,
+.hero-btn-group {
+    opacity: 0;
+}
+
+.carousel-item.active .hero-subtitle {
+    animation: slideUpFade 0.8s ease-out forwards 0.3s;
+}
+
+.carousel-item.active .hero-title {
+    animation: slideUpFade 0.8s ease-out forwards 0.5s;
+}
+
+.carousel-item.active .hero-btn-group {
+    animation: slideUpFade 0.8s ease-out forwards 0.7s;
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Typography */
+
+.hero-subtitle {
+    display: inline-block;
+    font-size: 1.1rem;
+    letter-spacing: 4px;
+    color: var(--duha-gold);
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px 15px;
+    backdrop-filter: blur(4px);
+    border-radius: 50px;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 5.5rem;
+    font-weight: 700;
+    color: var(--duha-white);
+    margin-bottom: 30px;
+    line-height: 1.1;
+}
+
+
+/* Buttons */
+
+.hero-btn-primary {
+    background-color: var(--duha-gold);
+    color: var(--duha-dark);
+    padding: 15px 40px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    transition: all 0.3s ease;
+    margin: 5px;
+}
+
+.hero-btn-primary:hover {
+    background-color: var(--duha-white);
+    color: var(--duha-maroon);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.hero-btn-outline {
+    background: transparent;
+    color: var(--duha-white);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    padding: 13px 38px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    margin: 5px;
+}
+
+.hero-btn-outline:hover {
+    border-color: var(--duha-gold);
+    color: var(--duha-gold);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+
+/* --- MODERN CONTROLS (ARROWS) --- */
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    /* Circle shape */
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    /* Hidden by default for cleaner look */
+    transition: all 0.3s ease;
+    margin: 0 30px;
+}
+
+#duha-hero-carousel:hover .carousel-control-prev,
+#duha-hero-carousel:hover .carousel-control-next {
+    opacity: 1;
+    /* Show on hover */
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background: var(--duha-maroon);
+    border-color: var(--duha-maroon);
+    transform: translateY(-50%) scale(1.1);
+    opacity: 1;
+}
+
+
+/* Custom Arrow Icons */
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-size: 50%;
+    filter: invert(1);
+    /* Make arrows white */
+}
+
+
+/* --- MODERN INDICATORS (LINES) --- */
+
+.carousel-indicators {
+    margin-bottom: 40px;
+}
+
+.carousel-indicators [data-bs-target] {
+    height: 4px;
+    width: 40px;
+    /* Short line */
+    background-color: rgba(255, 255, 255, 0.4);
+    border: none;
+    margin: 0 8px;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-radius: 2px;
+}
+
+.carousel-indicators .active {
+    width: 70px;
+    /* Expands when active */
+    background-color: var(--duha-gold);
+    box-shadow: 0 0 10px rgba(197, 160, 101, 0.5);
+}
+
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+
+@media (max-width: 991px) {
+    .hero-title {
+        font-size: 3.5rem;
+    }
+    #duha-hero-carousel {
+        height: 80vh;
+    }
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 50px;
+        height: 50px;
+        margin: 0 10px;
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Mobile Optimization: Reduce height so image fits better vertically */
+    #duha-hero-carousel {
+        height: 75vh;
+        min-height: 500px;
+    }
+    .hero-title {
+        font-size: 2.8rem;
+        margin-bottom: 20px;
+    }
+    .hero-subtitle {
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+    }
+    /* Buttons stack on mobile */
+    .hero-btn-primary,
+    .hero-btn-outline {
+        width: 100%;
+        display: block;
+        margin: 10px 0;
+    }
+    .hero-btn-group {
+        padding: 0 20px;
+    }
+    /* Hide arrows on very small screens, rely on swipe/dots */
+    .carousel-control-prev,
+    .carousel-control-next {
+        display: none;
+    }
+    .carousel-indicators {
+        margin-bottom: 20px;
+    }
+}
+
+
+/* Features section */
+
+#duha-features {
+    padding: 100px 0;
+    background-color: var(--duha-bg);
+    /* Warm premium background */
+}
+
+
+/* CARD CONTAINER */
+
+.feature-card {
+    background: #fff;
+    border: none;
+    height: 100%;
+    position: relative;
+    transition: all 0.4s ease;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+    padding-bottom: 10px;
+    /* Reduced padding since button is gone */
+    overflow: hidden;
+}
+
+
+/* IMAGE AREA */
+
+.feat-img-wrapper {
+    height: 280px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.feat-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+
+/* FLOATING TITLE BOX (With Icons) */
+
+.feat-header {
+    background: var(--duha-maroon);
+    width: 85%;
+    margin: -50px auto 0;
+    /* Pulled up higher for icon space */
+    padding: 25px 10px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 10px 25px rgba(92, 20, 12, 0.3);
+    transition: all 0.4s ease;
+}
+
+
+/* NEW ICON STYLE */
+
+.feat-icon {
+    font-size: 2rem;
+    color: var(--duha-gold);
+    display: block;
+    margin-bottom: 10px;
+    transition: all 0.4s ease;
+}
+
+.feat-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+
+/* Gold Line Accent */
+
+.feat-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--duha-gold);
+    transition: width 0.4s ease;
+}
+
+
+/* BODY CONTENT */
+
+.feat-body {
+    padding: 30px 30px 10px;
+    /* Adjusted padding */
+    text-align: center;
+    position: relative;
+    z-index: 5;
+}
+
+.feat-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+    font-weight: 400;
+}
+
+
+/* BACKGROUND NUMBER (Watermark) */
+
+.bg-number {
+    position: absolute;
+    bottom: -20px;
+    right: -10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    color: rgba(0, 0, 0, 0.03);
+    font-weight: 700;
+    line-height: 1;
+    z-index: 1;
+    transition: all 0.4s ease;
+}
+
+
+/* --- HOVER EFFECTS --- */
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card:hover .feat-img {
+    transform: scale(1.1);
+}
+
+.feature-card:hover .feat-header {
+    background: #000;
+    transform: translateY(-5px);
+}
+
+.feature-card:hover .feat-header::after {
+    width: 100%;
+}
+
+.feature-card:hover .feat-icon {
+    transform: scale(1.2);
+    color: #fff;
+    /* Icon turns white on hover */
+}
+
+.feature-card:hover .bg-number {
+    color: rgba(197, 160, 101, 0.1);
+    transform: scale(1.1);
+}
+
+
+/* MASTER CONTAINER - FIXED PARALLAX */
+
+#duha-about-wrapper {
+    position: relative;
+    background: url('https://images.unsplash.com/photo-1617104424032-b9bd6972d0e4?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    /* Parallax Magic */
+    padding: 120px 0;
+    color: #fff;
+    overflow: hidden;
+}
+
+
+/* Dark Overlay */
+
+.about-master-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Manually added overlay color here */
+    background: rgba(0, 0, 0, 0.535);
+    z-index: 1;
+}
+
+.about-container {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* --- TYPOGRAPHY --- */
+
+.gold-subtitle {
+    color: var(--duha-gold);
+    font-family: 'Outfit', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.big-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    /* Shadow for better readability */
+}
+
+.body-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #ffffff;
+    /* Pure white for better contrast */
+    margin-bottom: 25px;
+    font-weight: 400;
+    /* Thoda bold kiya taaki halka na lage */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* --- STATS STRIP --- */
+
+.stats-row {
+    margin-top: 80px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 50px 0;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.stat-item {
+    text-align: center;
+    padding: 10px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-item:last-child {
+    border-right: none;
+}
+
+.stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--duha-gold);
+    font-weight: 700;
+    line-height: 1;
+    display: block;
+}
+
+.stat-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 10px;
+    display: block;
+    color: rgba(255, 255, 255, 0.8);
+    /* Increased visibility */
+}
+
+
+/* --- VISION & MISSION CARDS --- */
+
+.vm-card {
+    background: rgba(255, 255, 255, 0.08);
+    /* Slightly more visible background */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 50px 40px;
+    margin-top: 40px;
+    transition: 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    height: 100%;
+    backdrop-filter: blur(5px);
+}
+
+.vm-card:hover {
+    background: rgba(197, 160, 101, 0.15);
+    /* Gold tint */
+    transform: translateY(-10px);
+    border-color: var(--duha-gold);
+}
+
+.vm-icon {
+    font-size: 3rem;
+    color: var(--duha-gold);
+    margin-bottom: 25px;
+}
+
+.vm-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.vm-text {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    /* More visible text */
+    line-height: 1.7;
+}
+
+
+/* SIGNATURE */
+
+.signature-block {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.signature-img {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: var(--duha-gold);
+}
+
+.founder-name {
+    display: block;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 5px;
+    color: #fff;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 991px) {
+    .stat-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 30px 0;
+    }
+    .big-heading {
+        font-size: 2.5rem;
+    }
+    #duha-about-wrapper {
+        padding: 80px 0;
+    }
+}
+
+
+/* plywood look */
+
+#duha-sheet-showcase {
+    padding: 80px 0;
+    background-color: var(--duha-bg-light);
+    overflow: hidden;
+    user-select: none;
+    /* Prevent text selection while dragging */
+}
+
+
+/* HEADER RESPONSIVE */
+
+.sheet-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 0 15px;
+}
+
+.sheet-subtitle {
+    font-family: 'Outfit', sans-serif;
+    color: var(--duha-gold);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.sheet-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--duha-dark);
+    margin: 0;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+
+/* SLIDER CONTAINER */
+
+.sheet-slider-wrapper {
+    overflow-x: auto;
+    padding-bottom: 40px;
+    /* Space for hover lift */
+    padding-top: 20px;
+    /* Hide Default Scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    cursor: grab;
+    /* Shows hand icon */
+    /* Snap Effect (Enabled by default) */
+    scroll-snap-type: x mandatory;
+    /* IMPORTANT: Removed 'scroll-behavior: smooth' to fix drag lag */
+    scroll-behavior: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+
+/* Disable snap while dragging for buttery smooth feel */
+
+.sheet-slider-wrapper.active {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+}
+
+.sheet-slider-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.sheet-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    padding: 0 20px;
+}
+
+
+/* SHEET CARD */
+
+.sheet-card {
+    position: relative;
+    flex-shrink: 0;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+    border: 1px solid #ddd;
+    background: #fff;
+    scroll-snap-align: center;
+    /* Mobile Size */
+    width: 75vw;
+    height: 400px;
+}
+
+
+/* SHINE EFFECT LAYER */
+
+.sheet-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: skewX(-25deg);
+    transition: 0s;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.sheet-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+
+/* INFO OVERLAY */
+
+.sheet-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
+    padding: 30px 20px;
+    color: #fff;
+    transform: translateY(100%);
+    transition: all 0.5s ease;
+    z-index: 3;
+}
+
+
+/* Always show info on Mobile */
+
+@media (hover: none) {
+    .sheet-info {
+        transform: translateY(0);
+        padding-bottom: 20px;
+    }
+}
+
+.sheet-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin: 0;
+    color: var(--duha-gold);
+    transform: translateY(10px);
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.sheet-cat {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    opacity: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transform: translateY(10px);
+    transition: 0.5s;
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+/* HOVER EFFECTS (Desktop Only) */
+
+@media (hover: hover) {
+    .sheet-card:hover {
+        transform: translateY(-20px) scale(1.02);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        border-color: var(--duha-gold);
+        z-index: 5;
+    }
+    .sheet-card:hover .sheet-img {
+        transform: scale(1.15);
+        /* Stronger Zoom */
+    }
+    .sheet-card:hover .sheet-info {
+        transform: translateY(0);
+    }
+    /* Text reveal animation */
+    .sheet-card:hover .sheet-name,
+    .sheet-card:hover .sheet-cat {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .sheet-card:hover .sheet-name {
+        transition-delay: 0.1s;
+    }
+    /* Trigger Shine */
+    .sheet-card:hover::after {
+        left: 150%;
+        transition: 0.8s ease-in-out;
+    }
+}
+
+
+/* --- RESPONSIVE BREAKPOINTS --- */
+
+
+/* Tablet (Show ~2 items) */
+
+@media (min-width: 576px) and (max-width: 991px) {
+    .sheet-track {
+        gap: 25px;
+        padding: 0 30px;
+    }
+    .sheet-card {
+        width: 45vw;
+        height: 500px;
+    }
+    .sheet-title {
+        font-size: 2.5rem;
+    }
+}
+
+
+/* Desktop (Show exactly 3 items) */
+
+@media (min-width: 992px) {
+    .sheet-track {
+        width: 100%;
+        padding: 0;
+        gap: 30px;
+    }
+    .sheet-card {
+        width: calc((100% - 60px) / 3);
+        min-width: calc((100% - 60px) / 3);
+        height: 600px;
+    }
+    .sheet-slider-wrapper {
+        overflow-x: auto;
+    }
+}
+
+
+/* PROGRESS BAR */
+
+.scroll-progress-container {
+    width: 90%;
+    max-width: 600px;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.1);
+    margin: 30px auto 0;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-progress-fill {
+    height: 100%;
+    width: 33%;
+    background: var(--duha-gold);
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: width 0.1s linear, left 0.1s linear;
+}
+
+.scroll-hint-text {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 10px;
+    font-family: 'Outfit', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 576px) {
+    .sheet-title {
+        font-size: 2rem;
+    }
+    .sheet-subtitle {
+        letter-spacing: 2px;
+        font-size: 0.8rem;
+    }
+    #duha-sheet-showcase {
+        padding: 60px 0;
+    }
+}
+
+#duha-products-slider {
+    padding: 100px 50px;
+    background-color: var(--duha-bg-light);
+    overflow: hidden;
+}
+
+
+/* HEADER */
+
+.prod-header {
+    text-align: center;
+    margin-bottom: 60px;
+    padding: 0 15px;
+}
+
+.prod-subtitle {
+    font-family: 'Outfit', sans-serif;
+    color: var(--duha-gold);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.prod-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--duha-dark);
+    margin: 0;
+    font-weight: 700;
+}
+
+
+/* --- INFINITE SLIDER CONTAINER --- */
+
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    overflow: hidden;
+    /* Premium Fade Effect on Edges */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.slider-track {
+    display: flex;
+    width: calc(320px * 14);
+    /* Card Width (300 + 20 gap) * Count */
+    animation: scroll 40s linear infinite;
+    padding: 30px 0;
+    /* Space for hover shadows */
+}
+
+
+/* Pause animation on hover */
+
+.slider-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-320px * 7));
+    }
+    /* Half width */
+}
+
+
+/* CARD DESIGN - MODERN & STYLISH */
+
+.prod-card {
+    width: 300px;
+    margin: 0 10px;
+    /* Gap */
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    /* Soft Shadow */
+    border-bottom: 3px solid transparent;
+    /* Hidden gold border */
+}
+
+.prod-img-box {
+    height: 240px;
+    overflow: hidden;
+    position: relative;
+}
+
+.prod-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+
+/* Dark Overlay on Image Hover */
+
+.prod-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.prod-body {
+    padding: 25px;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+    background: #fff;
+}
+
+.prod-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--duha-dark);
+    margin-bottom: 8px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.prod-desc {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+
+/* STYLISH BUTTON */
+
+.prod-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 30px;
+    background: transparent;
+    color: var(--duha-maroon);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(92, 20, 12, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.prod-btn i {
+    margin-left: 8px;
+    transition: 0.3s;
+}
+
+
+/* --- HOVER EFFECTS (The Magic) --- */
+
+.prod-card:hover {
+    transform: translateY(-15px);
+    /* Big Lift */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    /* Deep Shadow */
+    border-bottom-color: var(--duha-gold);
+    /* Gold Line Appears */
+}
+
+.prod-card:hover .prod-img {
+    transform: scale(1.15);
+    /* Zoom */
+}
+
+.prod-card:hover .prod-overlay {
+    opacity: 1;
+}
+
+.prod-card:hover .prod-name {
+    color: var(--duha-maroon);
+}
+
+.prod-card:hover .prod-btn {
+    background: var(--duha-maroon);
+    color: #fff;
+    border-color: var(--duha-maroon);
+}
+
+.prod-card:hover .prod-btn i {
+    transform: translateX(5px);
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+    .prod-title {
+        font-size: 2.2rem;
+    }
+    .slider-track {
+        width: calc(260px * 14);
+        /* Smaller cards on mobile */
+    }
+    .prod-card {
+        width: 240px;
+        margin: 0 10px;
+    }
+    .prod-img-box {
+        height: 200px;
+    }
+}
+
+
+/* sectors */
+
+#duha-sectors {
+    padding: 120px 0;
+    position: relative;
+    /* FIXED PARALLAX BACKGROUND IMAGE */
+    background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    /* The Parallax Effect */
+    overflow: hidden;
+}
+
+
+/* Dark Overlay to make cards pop */
+
+.sector-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    /* Darkens the bg image */
+    z-index: 1;
+}
+
+
+/* Container relative to sit above background */
+
+.sector-container {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* HEADER */
+
+.sector-header {
+    text-align: center;
+    margin-bottom: 70px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.sector-subtitle {
+    font-family: 'Outfit', sans-serif;
+    color: var(--duha-gold);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.sector-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: #fff;
+    /* White Text on Dark Background */
+    margin: 0 0 20px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.sector-desc {
+    font-family: 'Outfit', sans-serif;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+
+/* CARD GRID */
+
+.sector-card {
+    position: relative;
+    border-radius: 0;
+    /* Sharp Edges */
+    overflow: hidden;
+    height: 420px;
+    /* Tall cards */
+    cursor: pointer;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sector-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+
+/* OVERLAY */
+
+.sector-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.1) 60%, transparent 100%);
+    transition: all 0.4s ease;
+}
+
+
+/* CONTENT */
+
+.sector-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 35px;
+    color: #fff;
+    transform: translateY(70px);
+    /* Partially hide */
+    transition: transform 0.5s ease;
+    z-index: 2;
+}
+
+
+/* Decorative Line */
+
+.sector-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 35px;
+    width: 50px;
+    height: 3px;
+    background: var(--duha-gold);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.sector-icon {
+    font-size: 2.2rem;
+    color: var(--duha-gold);
+    margin-bottom: 20px;
+    display: inline-block;
+    transition: all 0.4s ease;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.sector-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sector-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    opacity: 0;
+    /* Hidden initially */
+    transition: opacity 0.5s ease 0.1s;
+    border-left: 2px solid var(--duha-gold);
+    padding-left: 15px;
+    margin-top: 15px;
+}
+
+
+/* --- HOVER EFFECTS --- */
+
+.sector-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    /* Stronger shadow on dark bg */
+    border-color: var(--duha-gold);
+}
+
+.sector-card:hover .sector-img {
+    transform: scale(1.15);
+}
+
+.sector-card:hover .sector-overlay {
+    background: linear-gradient(to top, rgba(92, 20, 12, 0.95) 0%, rgba(92, 20, 12, 0.4) 100%);
+    /* Rich Maroon Tint */
+}
+
+.sector-card:hover .sector-content {
+    transform: translateY(0);
+}
+
+.sector-card:hover .sector-content::before {
+    opacity: 1;
+    top: -20px;
+    /* Moves up */
+}
+
+.sector-card:hover .sector-text {
+    opacity: 1;
+}
+
+.sector-card:hover .sector-icon {
+    transform: translateY(-10px) scale(1.1);
+    color: #fff;
+}
+
+
+/* Responsive Title */
+
+@media (max-width: 768px) {
+    .sector-title {
+        font-size: 2.5rem;
+    }
+    #duha-sectors {
+        background-attachment: scroll;
+        /* Better performance on some mobiles */
+    }
+}
+
+
+/* sectors */
+
+
+/* blogs */
+
+#duha-blog {
+    padding: 100px 0;
+    background-color: var(--duha-bg-light);
+    position: relative;
+}
+
+
+/* HEADER */
+
+.blog-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.blog-subtitle {
+    font-family: 'Outfit', sans-serif;
+    color: var(--duha-gold);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.blog-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--duha-dark);
+    margin: 0;
+    font-weight: 700;
+}
+
+
+/* BLOG CARD DESIGN */
+
+.blog-card {
+    position: relative;
+    background: #fff;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* IMAGE AREA */
+
+.blog-img-wrapper {
+    position: relative;
+    height: 350px;
+    overflow: hidden;
+}
+
+.blog-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+
+/* OVERLAY (Visible on Hover) */
+
+.blog-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: 0.4s;
+}
+
+
+/* DATE TAG (Floating Sexy Element) */
+
+.blog-date {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #fff;
+    padding: 10px 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.date-day {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--duha-maroon);
+    font-family: 'Playfair Display', serif;
+}
+
+.date-month {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    font-family: 'Outfit', sans-serif;
+}
+
+
+/* CONTENT AREA */
+
+.blog-content {
+    padding: 35px 30px;
+    position: relative;
+    background: #fff;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+/* Category Tag */
+
+.blog-cat {
+    color: var(--duha-gold);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.blog-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    line-height: 1.3;
+    margin-bottom: 15px;
+    color: var(--duha-dark);
+    transition: 0.3s;
+}
+
+.blog-desc {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+
+/* READ MORE LINK */
+
+.blog-link {
+    text-decoration: none;
+    color: var(--duha-maroon);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    transition: 0.3s;
+    position: relative;
+    width: fit-content;
+}
+
+.blog-link i {
+    margin-left: 8px;
+    transition: 0.3s;
+    font-size: 0.8rem;
+}
+
+
+/* Underline Animation */
+
+.blog-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--duha-gold);
+    transition: width 0.3s ease;
+}
+
+
+/* --- HOVER EFFECTS --- */
+
+.blog-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 30px 60px rgba(92, 20, 12, 0.1);
+    /* Subtle Maroon Shadow */
+}
+
+.blog-card:hover .blog-img {
+    transform: scale(1.1);
+}
+
+.blog-card:hover .blog-overlay {
+    opacity: 1;
+}
+
+.blog-card:hover .blog-heading {
+    color: var(--duha-maroon);
+}
+
+.blog-card:hover .blog-link {
+    color: var(--duha-gold);
+}
+
+.blog-card:hover .blog-link i {
+    transform: translateX(5px);
+}
+
+.blog-card:hover .blog-link::after {
+    width: 100%;
+}
+
+
+/* blogs */
+
+#duha-testimonials {
+    padding: 100px 0;
+    position: relative;
+    /* Background Image */
+    background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* Parallax Effect */
+    overflow: hidden;
+    user-select: none;
+}
+
+
+/* Overlay to keep text readable */
+
+#duha-testimonials::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.92);
+    /* Light Overlay */
+    z-index: 1;
+}
+
+
+/* HEADER */
+
+.testi-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 0 15px;
+    position: relative;
+    z-index: 2;
+}
+
+.testi-subtitle {
+    font-family: 'Outfit', sans-serif;
+    color: var(--duha-gold);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.testi-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--duha-dark);
+    margin: 0;
+    font-weight: 700;
+}
+
+
+/* SCROLL CONTAINER */
+
+.testi-wrapper {
+    overflow-x: auto;
+    padding: 20px 0 50px;
+    /* Bottom padding for shadows */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    cursor: grab;
+    position: relative;
+    z-index: 2;
+}
+
+.testi-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.testi-wrapper:active {
+    cursor: grabbing;
+}
+
+.testi-track {
+    display: flex;
+    gap: 30px;
+    width: max-content;
+    padding: 0 20px;
+    /* Side padding */
+}
+
+
+/* CARD DESIGN */
+
+.review-card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    border-left: 5px solid var(--duha-gold);
+    /* Gold Accent */
+    position: relative;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Mobile Default */
+    width: 300px;
+    min-width: 300px;
+}
+
+
+/* Desktop: Show exactly 3 items without scroll */
+
+@media (min-width: 992px) {
+    .testi-wrapper {
+        overflow-x: hidden;
+        /* Disable scroll on desktop */
+        display: flex;
+        justify-content: center;
+    }
+    .testi-track {
+        width: 100%;
+        max-width: 1320px;
+        /* Container max width */
+        justify-content: center;
+        padding: 0;
+    }
+    .review-card {
+        /* Calculate width for 3 items with 30px gap */
+        width: calc((100% - 60px) / 3);
+        min-width: calc((100% - 60px) / 3);
+    }
+}
+
+
+/* Hover Effect */
+
+.review-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    border-left-color: var(--duha-maroon);
+}
+
+
+/* Quote Icon */
+
+.review-quote-icon {
+    font-size: 4rem;
+    color: rgba(0, 0, 0, 0.03);
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-family: serif;
+    line-height: 1;
+}
+
+
+/* Text */
+
+.review-body {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+
+/* User Profile */
+
+.reviewer-box {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 20px;
+}
+
+.reviewer-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    border: 2px solid #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.reviewer-info h5 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--duha-dark);
+    margin: 0;
+    font-weight: 700;
+}
+
+.reviewer-info span {
+    font-size: 0.8rem;
+    color: var(--duha-gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.reviewer-rating {
+    margin-left: auto;
+    color: #ffc107;
+    font-size: 0.8rem;
+}
+
+
+/* Responsive Text */
+
+@media (max-width: 768px) {
+    .testi-title {
+        font-size: 2.2rem;
+    }
+}
+
+
+/* @@@@@@@@@@@@@@@@@ footer @@@@@@@@@@@@@@@@ */
+
+
+/* --- FOOTER CONTAINER with Spotlight Effect --- */
+
+#duha-footer {
+    background-color: var(--duha-dark);
+    /* Radial Gradient for Spotlight feel */
+    background-image: radial-gradient(circle at 10% 20%, rgba(92, 20, 12, 0.2) 0%, transparent 20%);
+    color: var(--duha-white);
+    padding-top: 120px;
+    /* Extra space for Floating Bar */
+    font-family: var(--font-nav);
+    position: relative;
+    margin-top: 100px;
+    /* Space from previous section */
+}
+
+
+/* --- FLOATING CTA BAR (The "Sexy" Element) --- */
+
+.footer-cta-wrapper {
+    position: absolute;
+    top: -60px;
+    /* Floats half inside/outside */
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.footer-cta-box {
+    background: linear-gradient(135deg, var(--duha-maroon) 0%, #2a0805 100%);
+    border-radius: 0;
+    padding: 40px 50px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 4px solid var(--duha-gold);
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.cta-text h3 {
+    font-family: var(--font-heading);
+    color: var(--duha-white);
+    font-size: 2rem;
+    margin: 0;
+}
+
+.cta-text p {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 5px 0 0;
+    font-size: 1rem;
+}
+
+.cta-btn {
+    background: var(--duha-gold);
+    color: var(--duha-dark);
+    padding: 15px 40px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.cta-btn:hover {
+    background: var(--duha-white);
+    color: var(--duha-maroon);
+    transform: translateY(-3px);
+}
+
+
+/* --- LOGO IMAGE STYLING --- */
+
+.footer-logo-img {
+    max-width: 140px;
+    /* Adjust size */
+    height: auto;
+    margin-bottom: 25px;
+    filter: brightness(0) invert(1);
+    /* Makes logo white if it's dark */
+    /* Remove filter if you upload a proper PNG logo */
+}
+
+.footer-about {
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.8;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+}
+
+
+/* --- WIDGET HEADERS --- */
+
+.widget-title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    margin-bottom: 35px;
+    color: var(--duha-gold);
+    /* Gold Title */
+    position: relative;
+    display: inline-block;
+}
+
+.widget-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 40px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+
+/* --- LINKS WITH ARROW --- */
+
+.footer-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-menu li {
+    margin-bottom: 12px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+    padding-bottom: 12px;
+}
+
+.footer-menu li:last-child {
+    border: none;
+}
+
+.footer-menu a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-menu a:hover {
+    color: var(--duha-gold);
+    padding-left: 5px;
+}
+
+.footer-menu a::after {
+    content: '\f054';
+    /* FontAwesome Chevron */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 0.7rem;
+    opacity: 0.5;
+}
+
+
+/* --- GALLERY WIDGET (New!) --- */
+
+.footer-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+    border-radius: 4px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.4s;
+    opacity: 0.7;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+
+/* --- CONTACT --- */
+
+.contact-row {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+.contact-icon {
+    min-width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--duha-gold);
+    border-radius: 50%;
+    margin-right: 15px;
+    transition: 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-row:hover .contact-icon {
+    background: var(--duha-gold);
+    color: #000;
+}
+
+.contact-info span {
+    display: block;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.contact-info p,
+.contact-info a {
+    margin: 0;
+    color: #fff;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+
+/* --- BOTTOM BAR --- */
+
+.footer-bottom {
+    background: #000;
+    padding: 25px 0;
+    margin-top: 80px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 991px) {
+    #duha-footer {
+        padding-top: 160px;
+        /* More space for stacked CTA */
+    }
+    .footer-cta-box {
+        text-align: center;
+        justify-content: center;
+        padding: 30px;
+    }
+    .cta-text {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
