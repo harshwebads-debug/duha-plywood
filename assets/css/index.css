@@ -94,6 +94,7 @@ ul {
         transform: scale(1);
         opacity: 1;
     }
+
     100% {
         transform: scale(1.6);
         opacity: 0;
@@ -225,11 +226,13 @@ ul {
         bottom: 20px;
         right: 20px;
     }
+
     .fab-trigger {
         width: 55px;
         height: 55px;
         font-size: 1.5rem;
     }
+
     .fab-action {
         width: 45px;
         height: 45px;
@@ -395,12 +398,14 @@ ul {
         display: block;
         animation: fadeInUp 0.3s ease forwards;
     }
+
     /* Dropdown Animation */
     @keyframes fadeInUp {
         from {
             opacity: 0;
             transform: translateY(10px);
         }
+
         to {
             opacity: 1;
             transform: translateY(0);
@@ -420,23 +425,28 @@ ul {
         max-height: 80vh;
         overflow-y: auto;
     }
+
     .navbar-nav {
         align-items: flex-start !important;
         /* Force Left align */
     }
+
     .navbar-nav .nav-item {
         margin: 5px 0;
         width: 100%;
     }
+
     .duha-nav-link {
         display: block;
         padding: 12px 0 !important;
         border-bottom: 1px solid #f9f9f9;
         width: 100%;
     }
+
     .duha-nav-link::before {
         display: none;
     }
+
     /* Remove gold line on mobile */
     /* Fix Dropdown Alignment */
     .dropdown-menu {
@@ -454,16 +464,19 @@ ul {
         transform: none !important;
         /* Remove desktop animation */
     }
+
     .dropdown-item {
         border-bottom: 1px solid #eee;
         padding-left: 10px;
     }
+
     /* Make button visible on mobile */
     .duha-btn-quote-container {
         display: block !important;
         margin-top: 20px;
         width: 100%;
     }
+
     .duha-btn-quote {
         width: 100%;
         text-align: center;
@@ -606,6 +619,7 @@ ul {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -754,9 +768,11 @@ ul {
     .hero-title {
         font-size: 3.5rem;
     }
+
     #duha-hero-carousel {
         height: 80vh;
     }
+
     .carousel-control-prev,
     .carousel-control-next {
         width: 50px;
@@ -767,19 +783,23 @@ ul {
 }
 
 @media (max-width: 768px) {
+
     /* Mobile Optimization: Reduce height so image fits better vertically */
     #duha-hero-carousel {
         height: 75vh;
         min-height: 500px;
     }
+
     .hero-title {
         font-size: 2.8rem;
         margin-bottom: 20px;
     }
+
     .hero-subtitle {
         font-size: 0.9rem;
         letter-spacing: 2px;
     }
+
     /* Buttons stack on mobile */
     .hero-btn-primary,
     .hero-btn-outline {
@@ -787,14 +807,17 @@ ul {
         display: block;
         margin: 10px 0;
     }
+
     .hero-btn-group {
         padding: 0 20px;
     }
+
     /* Hide arrows on very small screens, rely on swipe/dots */
     .carousel-control-prev,
     .carousel-control-next {
         display: none;
     }
+
     .carousel-indicators {
         margin-bottom: 20px;
     }
@@ -964,7 +987,7 @@ ul {
 
 #duha-about-wrapper {
     position: relative;
-    background: url('https://images.unsplash.com/photo-1617104424032-b9bd6972d0e4?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
+    background: url('../images/backgrounds/freepik__ultrarealistic-drone-shot-topdown-aerial-view-of-a__51616.jpeg') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     /* Parallax Magic */
@@ -1147,9 +1170,11 @@ ul {
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         padding: 30px 0;
     }
+
     .big-heading {
         font-size: 2.5rem;
     }
+
     #duha-about-wrapper {
         padding: 80px 0;
     }
@@ -1157,305 +1182,198 @@ ul {
 
 
 /* plywood look */
-
-#duha-sheet-showcase {
+/* UNIQUE SECTION ID */
+#duha-grid-catalog {
     padding: 80px 0;
-    background-color: var(--duha-bg-light);
-    overflow: hidden;
-    user-select: none;
-    /* Prevent text selection while dragging */
+    background-color: #fff;
 }
 
+/* SECTION DIVIDERS */
+.dp-block {
+    margin-bottom: 100px;
+}
 
-/* HEADER RESPONSIVE */
+.dp-block:last-child {
+    margin-bottom: 0;
+}
 
-.sheet-header {
+/* --- CLEAN & BOLD HEADER DESIGN --- */
+.dp-header {
     text-align: center;
     margin-bottom: 50px;
-    padding: 0 15px;
+    padding-bottom: 20px;
+    position: relative;
 }
 
-.sheet-subtitle {
+/* Subtitle */
+.dp-grid-subtitle {
     font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
     color: var(--duha-gold);
     text-transform: uppercase;
     letter-spacing: 3px;
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 700;
     display: block;
     margin-bottom: 10px;
 }
 
-.sheet-title {
+/* Main Title */
+.dp-main-title {
     font-family: 'Playfair Display', serif;
     font-size: 3rem;
-    color: var(--duha-dark);
+    color: var(--duha-maroon);
+    /* Maroon for strong branding */
     margin: 0;
     font-weight: 700;
+    position: relative;
+    display: inline-block;
     line-height: 1.2;
 }
 
-
-/* SLIDER CONTAINER */
-
-.sheet-slider-wrapper {
-    overflow-x: auto;
-    padding-bottom: 40px;
-    /* Space for hover lift */
-    padding-top: 20px;
-    /* Hide Default Scrollbar */
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    cursor: grab;
-    /* Shows hand icon */
-    /* Snap Effect (Enabled by default) */
-    scroll-snap-type: x mandatory;
-    /* IMPORTANT: Removed 'scroll-behavior: smooth' to fix drag lag */
-    scroll-behavior: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-
-/* Disable snap while dragging for buttery smooth feel */
-
-.sheet-slider-wrapper.active {
-    cursor: grabbing;
-    scroll-snap-type: none;
-    scroll-behavior: auto;
-}
-
-.sheet-slider-wrapper::-webkit-scrollbar {
-    display: none;
-}
-
-.sheet-track {
-    display: flex;
-    gap: 20px;
-    width: max-content;
-    padding: 0 20px;
-}
-
-
-/* SHEET CARD */
-
-.sheet-card {
-    position: relative;
-    flex-shrink: 0;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    cursor: pointer;
-    border: 1px solid #ddd;
-    background: #fff;
-    scroll-snap-align: center;
-    /* Mobile Size */
-    width: 75vw;
-    height: 400px;
-}
-
-
-/* SHINE EFFECT LAYER */
-
-.sheet-card::after {
+/* Simple Gold Underline */
+.dp-main-title::after {
     content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 50%;
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--duha-gold);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+.dp-sub-desc {
+    font-family: 'Outfit', sans-serif;
+    color: #555;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+/* --- CARD DESIGN (FIXED IMAGE FIT) --- */
+.dp-card {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    /* Taller card */
+    border-radius: 0;
+    /* Sharp Edges */
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    border: 1px solid #eee;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Image Area */
+.dp-img-wrap {
+    height: 480px;
+    /* Fixed height for image area */
+    width: 100%;
+    background: linear-gradient(to bottom,
+            #D7D7D8 0%,
+            #d7d7d8f6 75%,
+            #FAFBF7 100%);
+    /* White bg blends with card if image is narrow */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Image Styling - CONTAIN (Shows Full Image) */
+.dp-img {
+    width: 100%;
     height: 100%;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transform: skewX(-25deg);
-    transition: 0s;
+    object-fit: contain;
+    /* Ensures complete image is visible */
+    transition: transform 0.6s ease;
+}
+
+/* Info Area (Always Visible) */
+.dp-info-box {
+    padding: 20px;
+    text-align: center;
+    background: #fff;
+    border-top: 1px solid #f5f5f5;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: 0.3s;
+    position: relative;
     z-index: 2;
-    pointer-events: none;
 }
 
-.sheet-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s ease;
-}
-
-
-/* INFO OVERLAY */
-
-.sheet-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
-    padding: 30px 20px;
-    color: #fff;
-    transform: translateY(100%);
-    transition: all 0.5s ease;
-    z-index: 3;
-}
-
-
-/* Always show info on Mobile */
-
-@media (hover: none) {
-    .sheet-info {
-        transform: translateY(0);
-        padding-bottom: 20px;
-    }
-}
-
-.sheet-name {
+.dp-prod-name {
     font-family: 'Playfair Display', serif;
     font-size: 1.4rem;
     margin: 0;
-    color: var(--duha-gold);
-    transform: translateY(10px);
-    transition: 0.5s;
-    opacity: 0;
+    color: var(--duha-dark);
+    font-weight: 700;
+    transition: 0.3s;
 }
 
-.sheet-cat {
+.dp-prod-cat {
     font-family: 'Outfit', sans-serif;
     font-size: 0.85rem;
-    opacity: 0;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transform: translateY(10px);
-    transition: 0.5s;
-    display: block;
-    margin-bottom: 5px;
-}
-
-
-/* HOVER EFFECTS (Desktop Only) */
-
-@media (hover: hover) {
-    .sheet-card:hover {
-        transform: translateY(-20px) scale(1.02);
-        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-        border-color: var(--duha-gold);
-        z-index: 5;
-    }
-    .sheet-card:hover .sheet-img {
-        transform: scale(1.15);
-        /* Stronger Zoom */
-    }
-    .sheet-card:hover .sheet-info {
-        transform: translateY(0);
-    }
-    /* Text reveal animation */
-    .sheet-card:hover .sheet-name,
-    .sheet-card:hover .sheet-cat {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    .sheet-card:hover .sheet-name {
-        transition-delay: 0.1s;
-    }
-    /* Trigger Shine */
-    .sheet-card:hover::after {
-        left: 150%;
-        transition: 0.8s ease-in-out;
-    }
-}
-
-
-/* --- RESPONSIVE BREAKPOINTS --- */
-
-
-/* Tablet (Show ~2 items) */
-
-@media (min-width: 576px) and (max-width: 991px) {
-    .sheet-track {
-        gap: 25px;
-        padding: 0 30px;
-    }
-    .sheet-card {
-        width: 45vw;
-        height: 500px;
-    }
-    .sheet-title {
-        font-size: 2.5rem;
-    }
-}
-
-
-/* Desktop (Show exactly 3 items) */
-
-@media (min-width: 992px) {
-    .sheet-track {
-        width: 100%;
-        padding: 0;
-        gap: 30px;
-    }
-    .sheet-card {
-        width: calc((100% - 60px) / 3);
-        min-width: calc((100% - 60px) / 3);
-        height: 600px;
-    }
-    .sheet-slider-wrapper {
-        overflow-x: auto;
-    }
-}
-
-
-/* PROGRESS BAR */
-
-.scroll-progress-container {
-    width: 90%;
-    max-width: 600px;
-    height: 4px;
-    background: rgba(0, 0, 0, 0.1);
-    margin: 30px auto 0;
-    border-radius: 2px;
-    position: relative;
-    overflow: hidden;
-}
-
-.scroll-progress-fill {
-    height: 100%;
-    width: 33%;
-    background: var(--duha-gold);
-    position: absolute;
-    left: 0;
-    top: 0;
-    transition: width 0.1s linear, left 0.1s linear;
-}
-
-.scroll-hint-text {
-    text-align: center;
-    font-size: 0.8rem;
     color: #888;
-    margin-top: 10px;
-    font-family: 'Outfit', sans-serif;
     text-transform: uppercase;
     letter-spacing: 1px;
+    margin-bottom: 5px;
+    display: block;
 }
 
-@media (max-width: 576px) {
-    .sheet-title {
-        font-size: 2rem;
+/* --- HOVER EFFECTS --- */
+@media (hover: hover) {
+    .dp-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        border-color: var(--duha-gold);
     }
-    .sheet-subtitle {
-        letter-spacing: 2px;
-        font-size: 0.8rem;
+
+    .dp-card:hover .dp-img {
+        transform: scale(1.08);
+        /* Gentle Zoom */
     }
-    #duha-sheet-showcase {
-        padding: 60px 0;
+
+    .dp-card:hover .dp-info-box {
+        background: var(--duha-maroon);
+        border-top-color: var(--duha-maroon);
+    }
+
+    .dp-card:hover .dp-prod-name {
+        color: #fff;
+    }
+
+    .dp-card:hover .dp-prod-cat {
+        color: var(--duha-gold);
     }
 }
 
-#duha-products-slider {
-    padding: 50px 50px;
-    background-color: var(--duha-bg-light);
-    overflow: hidden;
-}
 
-@media(max-width:550px) {
-    #duha-products-slider {
-        padding: 30px 20px;
-    }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* HEADER */
@@ -1519,9 +1437,11 @@ ul {
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(calc(-320px * 7));
     }
+
     /* Half width */
 }
 
@@ -1671,14 +1591,17 @@ ul {
     .prod-title {
         font-size: 2.2rem;
     }
+
     .slider-track {
         width: calc(260px * 14);
         /* Smaller cards on mobile */
     }
+
     .prod-card {
         width: 240px;
         margin: 0 10px;
     }
+
     .prod-img-box {
         height: 200px;
     }
@@ -1904,6 +1827,7 @@ ul {
     .sector-title {
         font-size: 2.5rem;
     }
+
     #duha-sectors {
         background-attachment: scroll;
         /* Better performance on some mobiles */
@@ -2260,6 +2184,7 @@ ul {
         display: flex;
         justify-content: center;
     }
+
     .testi-track {
         width: 100%;
         max-width: 1320px;
@@ -2267,6 +2192,7 @@ ul {
         justify-content: center;
         padding: 0;
     }
+
     .review-card {
         /* Calculate width for 3 items with 30px gap */
         width: calc((100% - 60px) / 3);
@@ -2615,13 +2541,304 @@ ul {
         padding-top: 160px;
         /* More space for stacked CTA */
     }
+
     .footer-cta-box {
         text-align: center;
         justify-content: center;
         padding: 30px;
     }
+
     .cta-text {
         width: 100%;
         margin-bottom: 20px;
     }
 }
+
+
+
+
+
+
+
+
+
+   #duha-partners {
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+            
+            /* FIXED BACKGROUND IMAGE */
+            background: url('../images/partners/bg.jpg') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed; /* Parallax Effect */
+        }
+
+        /* BLACK OVERLAY */
+        #duha-partners::before {
+            content: '';
+            position: absolute;
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85); /* Strong Dark Overlay */
+            z-index: 1;
+        }
+
+        /* Ensure content sits above overlay */
+        .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* HEADER */
+        .partner-header {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Giant Watermark Behind Title */
+        .header-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 8rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03); /* White watermark for dark bg */
+            white-space: nowrap;
+            z-index: -1;
+            letter-spacing: 10px;
+            user-select: none;
+        }
+
+        .partner-subtitle {
+            font-family: 'Outfit', sans-serif;
+            color: var(--duha-gold);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Decorative lines beside subtitle */
+        .partner-subtitle::before, .partner-subtitle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40px;
+            height: 1px;
+            background: var(--duha-gold);
+        }
+        .partner-subtitle::before { left: -50px; }
+        .partner-subtitle::after { right: -50px; }
+
+        .partner-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin: 0;
+            font-weight: 700;
+            color: #ffffff; /* White text for dark background */
+        }
+
+        /* --- 3D FLIP CARD CONTAINER --- */
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 550px; /* Taller to fit more content */
+            perspective: 1500px; /* Increased perspective for deeper 3D effect */
+            margin-bottom: 30px;
+            cursor: pointer;
+        }
+
+        /* This container flips */
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            /* SLOWER and SMOOTHER Transition */
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1); 
+            transform-style: preserve-3d;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        /* Flip on Hover */
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Front and Back Sides */
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        /* --- FRONT SIDE DESIGN (Content + Logo) --- */
+        .flip-card-front {
+            background-color: #fff;
+            /* Subtle Pattern Background */
+            background-image: radial-gradient(#e0e0e0 1px, transparent 1px);
+            background-size: 20px 20px;
+            
+            color: black;
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 30px;
+        }
+
+        /* Logo Animation (Floating) */
+        .partner-logo-box {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            animation: floatLogo 4s ease-in-out infinite; /* Slower float */
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+        }
+
+        @keyframes floatLogo {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); } 
+            100% { transform: translateY(0); }
+        }
+
+        .partner-logo-img {
+            max-width: 220px;
+            height: auto;
+            display: block;
+        }
+
+        .partner-details {
+            position: relative;
+            width: 100%;
+        }
+        
+        .partner-details::before {
+            content: '';
+            display: block;
+            width: 60px; height: 3px;
+            background: var(--duha-gold);
+            margin: 0 auto 25px;
+        }
+
+        /* Better Paragraph Styling */
+        .partner-desc {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.05rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        /* --- NEW ICON ROW (No List) --- */
+        .feature-icons-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .f-icon-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .f-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--duha-maroon);
+            color: var(--duha-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(92, 20, 12, 0.2);
+            transition: 0.3s;
+        }
+        
+        .f-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--duha-dark);
+            letter-spacing: 1px;
+        }
+
+        .flip-card:hover .f-icon {
+            transform: scale(1.1);
+            background: var(--duha-gold);
+            color: var(--duha-maroon);
+        }
+
+        /* --- BACK SIDE DESIGN (Image Only) --- */
+        .flip-card-back {
+            background-color: var(--duha-dark);
+            transform: rotateY(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(0.9);
+            transition: transform 1.2s ease; /* Scale effect matching flip time */
+        }
+
+        /* CENTER BADGE (Static) */
+        .auth-badge {
+            width: 120px;
+            height: 120px;
+            background: var(--duha-maroon); /* Changed to Maroon for contrast against dark BG */
+            border-radius: 50%;
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--duha-white) !important;
+            border: 4px solid #fff;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5); /* Stronger shadow */
+        }
+        .badge-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            font-weight: 700;
+            margin-top: 5px;
+            color: var(--duha-white);
+        }
+        .badge-icon { font-size: 1.8rem; color: var(--duha-gold); }
+
+        /* RESPONSIVE */
+        @media (max-width: 991px) {
+            .auth-badge { display: none; }
+            .flip-card { height: 600px; } /* Taller on mobile for text */
+        }
