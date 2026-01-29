@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Duha Plywood | Bhat Group of Companies</title>
+
+    <!-- Google Fonts (Premium Selection) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Outfit for Clean UI, Playfair for Headings -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/about.css">
+    <link rel="shortcut icon" href="assets/images/logo/duha-logo.png" type="image/x-icon">
+
+    <style>
+        :root {
+            /* Brand Colors */
+            --duha-dark: #0f0f0f;
+            /* Pitch Black for Contrast */
+            --duha-maroon: #5C140C;
+            /* Brand Core (Deep Red) */
+            --duha-gold: #C5A065;
+            /* Metallic Gold Accent */
+            --duha-white: #ffffff;
+            /* Typography */
+            --font-nav: 'Outfit', sans-serif;
+            --font-heading: 'Playfair Display', serif;
+            /* Transitions */
+            --ease-lux: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+
+        /* --- 1. CONTACT HERO (Parallax) --- */
+        .contact-hero {
+            position: relative;
+            height: 70vh;
+            min-height: 400px;
+            background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            /* Using Absolute positioning for content now instead of Flex to guarantee visibility */
+            overflow: hidden;
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            /* Darker Overlay for contrast */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: absolute;
+            /* Forced on top */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            /* High Z-index */
+            width: 100%;
+            text-align: center;
+            padding: 0 20px;
+            color: #fff;
+        }
+
+        .hero-subtitles {
+            font-family: 'Outfit', sans-serif;
+            color: var(--duha-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .hero-titles {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin: 0;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            /* Shadow for readability */
+            color: #fff;
+        }
+
+        /* --- 2. MAIN CONTACT SECTION (SPLIT CARD DESIGN) --- */
+        .main-contact-section {
+            padding: 100px 0;
+            background-color: var(--duha-bg-light);
+            background-image: radial-gradient(#ddd 1px, transparent 1px);
+            background-size: 30px 30px;
+            /* Subtle dots pattern */
+        }
+
+        /* SECTION HEADER STYLES */
+        .contact-section-header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cs-subtitle {
+            font-family: 'Outfit', sans-serif;
+            color: var(--duha-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .cs-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--duha-dark);
+            margin: 0 0 15px;
+            font-weight: 700;
+        }
+
+        .cs-desc {
+            font-family: 'Outfit', sans-serif;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* The Big Card Wrapper */
+        .contact-card-wrapper {
+            background: #fff;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-wrap: wrap;
+            border-radius: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            position: relative;
+            z-index: 5;
+        }
+
+        /* LEFT SIDE: INFO PANEL (Dark) */
+        .info-panel {
+            background: var(--duha-maroon);
+            color: #fff;
+            padding: 60px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative circles */
+        .info-panel::before {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .info-panel::after {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .panel-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .panel-desc {
+            font-family: 'Outfit', sans-serif;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .info-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+
+        .list-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--duha-gold);
+            font-size: 1.2rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .list-content h5 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            margin: 0 0 5px;
+            font-weight: 600;
+        }
+
+        .list-content p,
+        .list-content a {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+            text-decoration: none;
+            line-height: 1.5;
+        }
+
+        .list-content a:hover {
+            color: var(--duha-gold);
+        }
+
+        /* Socials in Panel */
+        .panel-socials {
+            margin-top: 40px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .panel-social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .panel-social-link:hover {
+            background: var(--duha-gold);
+            border-color: var(--duha-gold);
+            color: #000;
+        }
+
+        /* RIGHT SIDE: FORM PANEL (White) */
+        .form-panel {
+            background: #fff;
+            padding: 60px 40px;
+        }
+
+        .form-head {
+            margin-bottom: 30px;
+        }
+
+        .form-head h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--duha-dark);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-control-line {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-control-line:focus {
+            border-bottom-color: var(--duha-gold);
+        }
+
+        .submit-btn {
+            background: var(--duha-gold);
+            color: #000;
+            border: none;
+            padding: 15px 50px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--duha-maroon);
+            color: #fff;
+        }
+
+        /* --- 3. MAP SECTION --- */
+        .map-container {
+            height: 400px;
+            width: 100%;
+            border-top: 5px solid var(--duha-gold);
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 991px) {
+            .contact-card-wrapper {
+                margin-top: 0;
+            }
+
+            .info-panel,
+            .form-panel {
+                width: 100%;
+                padding: 40px 20px;
+            }
+
+            .hero-titles {
+                font-size: 3rem;
+            }
+
+            .cs-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .info-panel {
+                width: 40%;
+            }
+
+            .form-panel {
+                width: 60%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- PASTE AT BOTTOM OF BODY -->
+    <div class="duha-fab-container">
+
+        <!-- Main Trigger -->
+        <div class="fab-trigger">
+            <i class="fa-solid fa-comments fab-icon-chat"></i>
+            <i class="fa-solid fa-plus fab-icon-close"></i>
+        </div>
+
+        <!-- Option 1: WhatsApp -->
+        <a href="https://wa.me/919876543210" target="_blank" class="fab-action fab-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span class="fab-tooltip">WhatsApp</span>
+        </a>
+
+        <!-- Option 2: Call -->
+        <a href="tel:+919876543210" class="fab-action fab-call">
+            <i class="fa-solid fa-phone"></i>
+            <span class="fab-tooltip">Call Now</span>
+        </a>
+
+        <!-- Option 3: Mail -->
+        <a href="mailto:info@duhaplywood.com" class="fab-action fab-mail">
+            <i class="fa-solid fa-envelope"></i>
+            <span class="fab-tooltip">Email Us</span>
+        </a>
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- HEADER SECTION -->
+    <header id="duha-header">
+
+        <!-- 1. TOP BAR -->
+        <div class="duha-top-bar d-none d-lg-block">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="duha-top-info">
+                    <a href="tel:+916006302495"><i class="fa-solid fa-phone"></i> +91-6006302495</a>
+                    <a href="mailto:info@duhaplywood.com"><i class="fa-solid fa-envelope"></i> info@duhaplywood.com</a>
+                </div>
+                <div class="duha-social">
+                    <span class="me-3 opacity-75"><i class="fa-regular fa-clock me-1"></i> Mon - Sat: 9AM - 8PM</span>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. MAIN NAVBAR (Sticky Top) -->
+        <nav class="navbar navbar-expand-lg duha-navbar sticky-top">
+            <div class="container">
+                <!-- LOGO (Image) -->
+                <a class="navbar-brand" href="index.html">
+                    <img src="assets/images/logo/duha-logo.png" alt="Duha Plywood" class="duha-logo-img">
+                </a>
+
+                <!-- MOBILE TOGGLER -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#duhaMenu">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+
+                <!-- MENU LINKS -->
+                <div class="collapse navbar-collapse" id="duhaMenu">
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link duha-nav-link active" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link duha-nav-link" href="about-us.html">About Us</a>
+                        </li>
+
+                        <!-- DROPDOWN (Hover Desktop, Click Mobile) -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link duha-nav-link dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Products
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Marine Plywood</a></li>
+                                <li><a class="dropdown-item" href="#">Commercial Plywood</a></li>
+                                <li><a class="dropdown-item" href="#">Block Boards</a></li>
+                                <li><a class="dropdown-item" href="#">Architectural Laminates</a></li>
+                                <li><a class="dropdown-item" href="#">Flush Doors</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link duha-nav-link" href="#">Gallery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link duha-nav-link" href="contact-us.html">Contact Us</a>
+                        </li>
+                    </ul>
+
+                    <!-- CTA BUTTON -->
+                    <div class="ms-lg-4 mt-3 mt-lg-0 duha-btn-quote-container">
+                        <a href="#" class="btn duha-btn-quote">
+                            Get Quote <i class="fa-solid fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- 1. HERO HEADER (Fixed Visibility with Absolute Positioning) -->
+    <section class="contact-hero">
+        <div class="hero-content">
+            <span class="hero-subtitles">We are here for you</span>
+            <h1 class="hero-titles">Get in Touch</h1>
+        </div>
+    </section>
+
+    <!-- 2. MAIN CONTACT SECTION (SPLIT CARD DESIGN) -->
+    <section class="main-contact-section">
+        <div class="container">
+
+            <!-- SECTION HEADING -->
+            <div class="contact-section-header">
+                <span class="cs-subtitle">Let's Connect</span>
+                <h2 class="cs-title">Start Your Journey <span style="color: var(--duha-maroon);"> With Duha </span></h2>
+                <p class="cs-desc">
+                    Whether you have a question about our premium plywood, need a quote for your project, or want to
+                    discuss a partnership, we are here to help.
+                </p>
+            </div>
+
+            <!-- CARD WRAPPER -->
+            <div class="contact-card-wrapper">
+
+                <!-- LEFT: INFO PANEL -->
+                <div class="info-panel">
+                    <h3 class="panel-title">Contact Information</h3>
+                    <p class="panel-desc">Fill up the form and our Team will get back to you within 24 hours.</p>
+
+                    <ul class="info-list">
+                        <!-- Phone -->
+                        <li>
+                            <div class="list-icon"><i class="fa-solid fa-phone-volume"></i></div>
+                            <div class="list-content">
+                                <h5>Call Us</h5>
+                                <a href="tel:+919876543210">+91 98765 43210</a>
+                            </div>
+                        </li>
+                        <!-- Email -->
+                        <li>
+                            <div class="list-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+                            <div class="list-content">
+                                <h5>Email Us</h5>
+                                <a href="mailto:info@duhaplywood.com">info@duhaplywood.com</a>
+                            </div>
+                        </li>
+                        <!-- Address -->
+                        <li>
+                            <div class="list-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                            <div class="list-content">
+                                <h5>Visit Us</h5>
+                                <p>123, Industrial Area, Phase-2,<br>Yamuna Nagar, Haryana</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="panel-socials">
+                        <a href="#" class="panel-social-link"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="panel-social-link"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="panel-social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- RIGHT: FORM PANEL -->
+                <div class="form-panel">
+                    <div class="form-head">
+                        <h3>Send us a Message</h3>
+                    </div>
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label style="font-size: 0.8rem; color: #888;">Your Name</label>
+                                <input type="text" class="form-control-line" required>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label style="font-size: 0.8rem; color: #888;">Email Address</label>
+                                <input type="email" class="form-control-line" required>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label style="font-size: 0.8rem; color: #888;">Phone Number</label>
+                                <input type="tel" class="form-control-line">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label style="font-size: 0.8rem; color: #888;">Subject</label>
+                                <input type="text" class="form-control-line">
+                            </div>
+                            <div class="col-12 form-group">
+                                <label style="font-size: 0.8rem; color: #888;">Message</label>
+                                <textarea class="form-control-line" rows="4" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="submit-btn">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. MAP SECTION -->
+    <section class="map-container">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.495066928648!2d77.2755866151134!3d30.13324698184904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ef99b8b1b1b1b%3A0x1b1b1b1b1b1b1b1b!2sYamuna%20Nagar!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
+            allowfullscreen="" loading="lazy"></iframe>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--  FOOTER -->
+    <footer id="duha-footer">
+
+        <!-- 1. FLOATING CALL TO ACTION (Sexy Element) -->
+        <div class="footer-cta-wrapper">
+            <div class="container">
+                <div class="footer-cta-box">
+                    <div class="cta-text">
+                        <h3>Ready to Build Your Dream?</h3>
+                        <p>Contact us today for a free consultation and quote.</p>
+                    </div>
+                    <a href="#" class="cta-btn">Get A Quote <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+
+                <!-- COL 1: LOGO & ABOUT -->
+                <div class="col-lg-4 col-md-12 mb-5 mb-lg-0">
+                    <!-- LOGO IMAGE HERE -->
+                    <img src="assets/images/logo/duha-logo.png" alt="Duha Plywood" class="footer-logo-img">
+
+                    <p class="footer-about">
+                        Bhat Group of Companies represents the pinnacle of plywood innovation. We craft surfaces that
+                        define luxury interiors across the globe.
+                    </p>
+
+                    <!-- Socials -->
+                    <div class="d-flex gap-2">
+                        <a href="#" class="contact-icon" style="text-decoration: none;"><i
+                                class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="contact-icon" style="text-decoration: none;"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="contact-icon" style="text-decoration: none;"><i
+                                class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- COL 2: QUICK LINKS -->
+                <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                    <h4 class="widget-title">Quick Links</h4>
+                    <ul class="footer-menu">
+                        <li><a href="#">About Company</a></li>
+                        <li><a href="#">Our Products</a></li>
+                        <li><a href="#">Project Gallery</a></li>
+                        <li><a href="#">Quality Policy</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- COL 3: GALLERY (Visual Richness) -->
+                <div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+                    <h4 class="widget-title">Recent Works</h4>
+                    <div class="footer-gallery">
+                        <div class="gallery-item"><img
+                                src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=200&auto=format&fit=crop"
+                                alt="Work 1"></div>
+                        <div class="gallery-item"><img
+                                src="https://images.unsplash.com/photo-1617104424032-b9bd6972d0e4?q=80&w=200&auto=format&fit=crop"
+                                alt="Work 2"></div>
+                        <div class="gallery-item"><img
+                                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=200&auto=format&fit=crop"
+                                alt="Work 3"></div>
+                        <div class="gallery-item"><img
+                                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=200&auto=format&fit=crop"
+                                alt="Work 4"></div>
+                        <div class="gallery-item"><img
+                                src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=200&auto=format&fit=crop"
+                                alt="Work 5"></div>
+                    </div>
+                </div>
+
+                <!-- COL 4: CONTACT INFO -->
+                <div class="col-lg-3 col-md-12">
+                    <h4 class="widget-title">Contact</h4>
+
+                    <div class="contact-row">
+                        <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div class="contact-info">
+                            <span>Visit Us</span>
+                            <p>123, Industrial Area, Yamuna Nagar, India</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-row">
+                        <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                        <div class="contact-info">
+                            <span>Call Us</span>
+                            <a href="tel:+919876543210">+91 98765 43210</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-row">
+                        <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                        <div class="contact-info">
+                            <span>Email Us</span>
+                            <a href="mailto:info@duhaplywood.com">info@duha.com</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start">
+                        &copy; 2025 <strong>Duha Plywood</strong>. All Rights Reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+                        Designed with by <a href="#"
+                            style="color: var(--duha-white); text-decoration: none; font-weight: 600;">Web Ads India</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- JS Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar Scroll Effect (Subtle Shadow Increase)
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.duha-navbar');
+            if (window.scrollY > 50) {
+                navbar.style.padding = '15px 0'; // Slight shrink
+                navbar.style.boxShadow = '0 10px 30px rgba(0,0,0,0.08)';
+            } else {
+                navbar.style.padding = '20px 0'; // Back to tall
+                navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.03)';
+            }
+        });
+    </script>
+</body>
+
+</html>
