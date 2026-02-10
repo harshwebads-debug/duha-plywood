@@ -295,6 +295,7 @@ ul {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
     /* Very subtle shadow */
     transition: var(--ease-lux);
+ 
 }
 
 
@@ -311,14 +312,15 @@ ul {
 
 .navbar-nav .nav-item {
     margin: 0 15px;
+    
 }
 
 .duha-nav-link {
     font-family: var(--font-nav);
     color: var(--duha-dark) !important;
-    font-weight: 700;
+    font-weight: 600;
     /* Bold */
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     /* Smaller but BOLD */
     text-transform: uppercase;
     /* The "Premium" Look */
@@ -327,6 +329,7 @@ ul {
     padding: 10px 0 !important;
     position: relative;
     transition: var(--ease-lux);
+    
 }
 
 
